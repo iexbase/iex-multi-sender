@@ -1,0 +1,40 @@
+:host {
+    z-index: 2;
+    color: #fff;
+}
+
+.status-pro {
+    margin-left: 15px;
+    font-size: 13px;
+    color: #80ff80;
+}
+
+.not-authorized {
+    margin-left: 15px;
+    font-size: 13px;
+    text-align: center;
+    color: #ff5151;
+}
+
+.navbar-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    background: #3f51b5;
+
+    a {
+        margin-left: 15px;
+        font-weight: 300;
+
+        &.logo {
+            margin-left: 0;
+            font-size: 20px;
+            font-weight: 300;
+        }
+    }
+}
+
+.get-pro {
+    color: #ff7272;
+}

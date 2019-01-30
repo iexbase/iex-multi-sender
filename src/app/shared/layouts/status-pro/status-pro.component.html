@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ "GetStatusPRO" | translate }}</h2>
+
+<ng-container *ngIf="isPro">
+    <div mat-dialog-content class="notification">
+        {{ "GetStatusDescription" | translate }}
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!isPro">
+    <div mat-dialog-content>
+        <div class="notification" *ngIf="(isLogin | async)">
+            {{ "MessageStatus" | translate:{ amount: amount } }}
+        </div>
+        <div class="not-authorized" *ngIf="!(isLogin | async)">{{"StatusLogin" | translate }}</div>
+    </div>
+
+    <div mat-dialog-actions id="actions">
+        <button mat-button mat-stroked-button (click)="onClose()">{{ "Cancel" | translate}}</button>
+        <button *ngIf="(isLogin | async)" mat-button mat-stroked-button color="primary" (click)="registerPro()">
+            {{ "Confirmed"  | translate }}
+        </button>
+    </div>
+</ng-container>

@@ -1,0 +1,20 @@
+.notification {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.not-authorized {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    color: brown;
+}
+
+#actions {
+    padding: 20px 0;
+    button {
+        padding: 3px 45px;
+        margin: 0 auto;
+    }
+}

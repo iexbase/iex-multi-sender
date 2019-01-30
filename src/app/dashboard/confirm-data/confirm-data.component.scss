@@ -1,0 +1,19 @@
+.show-address {
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.confirm-item {
+    padding: 25px 0;
+    text-align: center;
+
+    .label {
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 5px;
+    }
+
+    .value {
+        font-size: 21px;
+    }
+}

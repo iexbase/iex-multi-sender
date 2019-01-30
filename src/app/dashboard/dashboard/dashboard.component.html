@@ -1,0 +1,69 @@
+
+<!-- First loading page -->
+<div class="loading-app" *ngIf="isLoading">
+    <mat-spinner [strokeWidth]="2" [diameter]="50"></mat-spinner>
+    <p class="loading-description">
+        {{ "LoadingPage" | translate }}
+    </p>
+</div>
+
+<!-- If successful -->
+<ng-container *ngIf="!isLoading">
+    <!-- In case the user is not authorized in TronLink -->
+    <app-not-authorized *ngIf="!(tronWebService.loggedIn | async)"></app-not-authorized>
+
+    <!-- If authorized successfully -->
+    <ng-container *ngIf="(tronWebService.loggedIn | async)">
+        <div class="container" fxLayout="column" fxLayoutAlign="center start" fxFlex="40">
+            <div class="dashboard-container">
+                <h1>{{ "WelcomeToTRX" | translate }} <span>iEX</span>MultiSender</h1>
+                <div class="description">
+                    <p>{{ "DescriptionOne" | translate }}</p>
+                    <p>{{ "DescriptionTwo" | translate }}</p>
+                    <p>{{ "DescriptionThree" | translate }}</p>
+                </div>
+
+                <ng-container *ngIf="!runProcess">
+                    <div *ngIf="!isNext" class="form-fields" [formGroup]="senderForm">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{ "SelectTRXAddress" | translate }}</mat-label>
+                            <mat-select [placeholder]="'SelectTRXAddress' | translate" formControlName="address">
+                                <mat-option [value]="(tronWebService.getAddress)">
+                                    {{ (tronWebService.getAddress) }} |
+                                    <span fxFlex=""></span>
+                                    {{ tronWebService.trxBalance  | formatCurrency }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{ "AddressesWithBalances" | translate }}</mat-label>
+                            <textarea formControlName="addressesList" [mat-autosize]="true"
+                                      matInput [placeholder]="'PasteJSONCodeWithAddresses' | translate"></textarea>
+                            <mat-hint>{{ "Examples" | translate }}:
+                                <a target="_blank" href="https://raw.githubusercontent.com/iexbase/iex-multi-sender/master/example.json">JSON</a>
+                            </mat-hint>
+                        </mat-form-field>
+
+                        <div id="actions">
+                            <button mat-button mat-raised-button color="primary" [disabled]="senderForm.invalid" (click)="confirmData()">
+                                {{ "Continue" | translate }}
+                            </button>
+                        </div>
+                    </div>
+                    <app-confirm-data *ngIf="isNext" [fromAddress]="senderForm.controls['address'].value">
+                    </app-confirm-data>
+
+                    <div id="actions-send" fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-button mat-raised-button color="primary" *ngIf="isNext" (click)="runProcess = true">
+                            {{ "StartExecution" | translate }}
+                        </button>
+                    </div>
+                </ng-container>
+
+                <!-- Start tx -->
+                <app-run-process *ngIf="runProcess"></app-run-process>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

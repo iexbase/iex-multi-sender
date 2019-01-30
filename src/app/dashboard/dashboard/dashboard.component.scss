@@ -1,0 +1,65 @@
+.loading-app {
+    text-align: center;
+    padding: 70px 0;
+
+    mat-spinner {
+        margin: 0 auto;
+    }
+
+    p {
+        font-size: 14px;
+        margin-top: 34px;
+        color: #999;
+    }
+}
+
+.dashboard-container {
+    width: 100%;
+    padding-top: 50px;
+
+    h1 {
+        text-align: center;
+        font-weight: 300;
+
+        span {
+            color: red;
+        }
+    }
+
+    .description {
+        color: #6a7894;
+        text-align: center;
+        font-size: 14px;
+        padding-bottom: 30px;
+
+        p {
+            margin: 0;
+            line-height: 1.8;
+        }
+    }
+
+
+    .form-fields {
+
+        .mat-form-field {
+            width: 100%;
+        }
+
+        #actions {
+            text-align: center;
+            border-top: 1px solid #e9e9e9;
+            padding: 10px 0;
+            margin-top: 10px;
+
+            button {
+                padding: 5px 70px;
+            }
+        }
+    }
+
+    #actions-send {
+        button {
+            padding: 3px 50px;
+        }
+    }
+}

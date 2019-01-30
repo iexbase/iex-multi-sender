@@ -1,0 +1,31 @@
+<nav class="navbar-header">
+
+    <a class="logo" routerLink="/" [attr.aria-label]="appName" mat-button>
+        {{appName}}
+    </a>
+    <span fxFlex=""></span>
+
+    <a mat-button target="_blank" [href]="'https://tronscan.org/#/contract/' + contractAddress">
+        {{ contractAddress }}
+    </a>
+
+    <a mat-icon-button target="_blank" [href]="githubLink">
+        <mat-icon svgIcon="github-icon"></mat-icon>
+    </a>
+
+    <a mat-icon-button target="_blank" href="https://t.me/iexbase">
+        <mat-icon svgIcon="telegram-icon"></mat-icon>
+    </a>
+
+    <div class="not-authorized"  *ngIf="!(tronWebService.loggedIn |async)">
+        {{ "NotAuthorized" | translate }}
+    </div>
+
+    <ng-container *ngIf="(tronWebService.loggedIn |async)">
+        <mat-spinner *ngIf="isLoading" color="warn" [strokeWidth]="1" [diameter]="30"></mat-spinner>
+        <ng-container *ngIf="!isLoading">
+            <a *ngIf="!(isPro | async)" class="get-pro" mat-button (click)="getProModal()">GET Pro</a>
+            <span *ngIf="(isPro | async)" class="status-pro">Status: PRO</span>
+        </ng-container>
+    </ng-container>
+</nav>

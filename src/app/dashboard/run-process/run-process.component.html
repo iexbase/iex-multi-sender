@@ -1,0 +1,24 @@
+
+<!-- Processing sign TronLink -->
+<div class="waiting-sign" *ngIf="txHashes.value && txHashes.value.length == 0">
+    <mat-spinner [strokeWidth]="2" [diameter]="60" color="primary"></mat-spinner>
+    {{ "SignTx" | translate:{ numberTx: numberTx } }}
+</div>
+
+<!-- List TX -->
+<mat-list *ngIf="txHashes.value && txHashes.value.length > 0">
+    <mat-list-item *ngFor="let tx of txHashes | async" class="tx-item">
+        <!-- Icon -->
+        <mat-icon mat-list-icon  [ngClass]="{'success': tx.status == 'confirmed', 'waiting': tx.status == 'pending'}">
+            <span *ngIf="tx.status == 'confirmed'">check</span>
+            <span *ngIf="tx.status == 'pending'">access_time</span>
+        </mat-icon>
+        <!-- TX Hash -->
+        <h4 mat-line>{{tx.hash}}</h4>
+        <!-- Description -->
+        <p mat-line>{{tx.text}}</p>
+        <div fxFlex="">
+            <a mat-button target="_blank" [href]="blockchainUrl + '/transaction/' + tx.hash">View</a>
+        </div>
+    </mat-list-item>
+</mat-list>

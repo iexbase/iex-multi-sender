@@ -1,0 +1,35 @@
+
+<!-- Button (Show, Hide) -->
+<button class="show-address" mat-button mat-stroked-button color="primary" (click)="toggle()">
+    <span *ngIf="isToggle">{{ "HideListAddresses" | translate }}</span>
+    <span *ngIf="!isToggle">{{ "ShowListAddresses" | translate }}</span>
+</button>
+
+<!-- Show JSON -->
+<div class="list-address">
+    <ngx-json-viewer [json]="addresses" *ngIf="isToggle" [expanded]="false"></ngx-json-viewer>
+</div>
+
+<!-- Details tx -->
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+    <div fxFlex="50" class="confirm-item">
+        <div class="label">{{ "TotalTRXToBeSent"| translate }}</div>
+        <div class="value">{{ tronWebService.totalBalance | formatCurrency }}</div>
+    </div>
+    <div fxFlex="50" class="confirm-item">
+        <div class="label">{{ "TotalAddressesToBeSent" | translate }}</div>
+        <div class="value">{{ addresses.length || 0 }}</div>
+    </div>
+    <div fxFlex="50" class="confirm-item">
+        <div class="label">{{ "YourBalance" | translate }}</div>
+        <div class="value">{{ yourBalance | formatCurrency }}</div>
+    </div>
+    <div fxFlex="50" class="confirm-item">
+        <div class="label">{{ "TotalNumberOfTxNeeded" | translate }}</div>
+        <div class="value">{{ tronWebService.totalNumberTx }}</div>
+    </div>
+    <div fxFlex="50" class="confirm-item">
+        <div class="label">{{ "CurrentFeePerTx" | translate }}</div>
+        <div class="value">{{ tronWebService.txFee }} TRX</div>
+    </div>
+</div>
