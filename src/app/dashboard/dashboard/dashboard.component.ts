@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
      */
     constructor(
         private fb: FormBuilder,
-        private tronWebService: TronWebService,
+        public tronWebService: TronWebService,
         private snackBar: MatSnackBar,
         private translate: TranslateService
     ) {

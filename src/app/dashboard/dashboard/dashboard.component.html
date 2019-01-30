@@ -54,11 +54,17 @@
                     <app-confirm-data *ngIf="isNext" [fromAddress]="senderForm.controls['address'].value">
                     </app-confirm-data>
 
-                    <div id="actions-send" fxLayout="column" fxLayoutAlign="center center">
+                    <div id="actions-send" *ngIf="tronWebService.trxBalance >= tronWebService.totalBalance"
+                         fxLayout="column" fxLayoutAlign="center center">
                         <button mat-button mat-raised-button color="primary" *ngIf="isNext" (click)="runProcess = true">
                             {{ "StartExecution" | translate }}
                         </button>
                     </div>
+
+                    <div class="not-balance" *ngIf="tronWebService.trxBalance < tronWebService.totalBalance">
+                        {{ "InsufficientFundAccount" | translate }}
+                    </div>
+
                 </ng-container>
 
                 <!-- Start tx -->

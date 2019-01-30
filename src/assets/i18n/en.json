@@ -30,5 +30,6 @@
     "StatusLogin": "Login to the system TRONLink",
     "Cancel": "Cancel",
     "Confirmed": "Confirmed",
-    "LoadingPage": "Please wait, the page is loading ..."
+    "LoadingPage": "Please wait, the page is loading ...",
+    "InsufficientFundAccount": "Insufficient funds in the account"
 }
